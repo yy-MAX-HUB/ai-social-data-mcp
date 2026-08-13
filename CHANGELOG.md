@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- Rewrite the project story around real Agent research workflows.
+- Add clearer Cursor, Claude, and Codex installation paths.
+- Document automatic pagination, deep comments, and verified platform coverage.
+- Improve npm and GitHub discovery metadata.
+
 ## 0.1.0
 
 - Add a stdio-to-Streamable-HTTP MCP bridge.

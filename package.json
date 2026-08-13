@@ -1,7 +1,7 @@
 {
   "name": "ai-social-data-mcp",
-  "version": "0.1.0",
-  "description": "One-command MCP bridge for detailed public social-platform data",
+  "version": "0.1.1",
+  "description": "Give Cursor, Claude and Codex deep social data: search, paginate, inspect creators, posts and comments",
   "homepage": "https://www.aisocialdata.xyz",
   "repository": {
     "type": "git",
@@ -29,9 +29,15 @@
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "social-data",
+    "social-media",
+    "agent-tools",
+    "data-research",
     "douyin",
     "xiaohongshu",
+    "bilibili",
+    "weibo",
     "cursor",
     "claude",
     "codex"

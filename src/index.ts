@@ -9,7 +9,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-const packageVersion = "0.1.0";
+const packageVersion = "0.1.1";
 const defaultEndpoint = "https://www.aisocialdata.xyz/mcp";
 
 function printHelp(): void {
