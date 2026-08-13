@@ -54,13 +54,27 @@ Agent 会自动完成：
 | 获取一级 / 二级评论 | — | ✓ |
 | 跨平台统一数据结构 | — | ✓ |
 
-## 30 秒接入
+## 快速安装
 
-无需注册，无需用户 API Key。
+无需注册，无需用户 API Key。选择你的 Agent，复制对应配置即可。
 
-### Cursor（推荐）
+| Agent / 客户端 | 推荐连接方式 |
+|---|---|
+| Cursor | 远程 MCP URL / 一键安装 |
+| Claude Code | `claude mcp add` 远程 HTTP |
+| Claude Desktop | npm stdio 桥接器 |
+| Codex CLI / IDE / ChatGPT Desktop | `config.toml` 远程 URL |
+| Gemini CLI | `gemini mcp add` 远程 HTTP |
+| VS Code / GitHub Copilot | `.vscode/mcp.json` |
+| Windsurf | Cascade 远程 MCP |
+| Cline | Streamable HTTP |
+| Roo Code、Cherry Studio 等 | 通用 npm stdio 配置 |
 
-直接使用远程 MCP：
+### Cursor
+
+最快方式：[一键安装到 Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=ai-social-data&config=eyJ1cmwiOiJodHRwczovL3d3dy5haXNvY2lhbGRhdGEueHl6L21jcCJ9)
+
+手动安装：保存到项目的 `.cursor/mcp.json`，然后重新加载 Cursor。
 
 ```json
 {
@@ -72,11 +86,26 @@ Agent 会自动完成：
 }
 ```
 
-保存到项目的 `.cursor/mcp.json`，重新加载 Cursor 即可。
+### Claude Code
 
-### Claude Desktop / stdio 客户端
+```bash
+claude mcp add --transport http --scope user ai-social-data https://www.aisocialdata.xyz/mcp
+```
 
-要求 Node.js 18 或更高版本：
+检查连接：
+
+```bash
+claude mcp list
+```
+
+### Claude Desktop
+
+Claude Desktop 使用 stdio 桥接器。要求 Node.js 18 或更高版本。
+
+配置文件：
+
+- Windows：`%APPDATA%\Claude\claude_desktop_config.json`
+- macOS：`~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -89,17 +118,128 @@ Agent 会自动完成：
 }
 ```
 
-也可以直接检查安装：
+保存后完全退出并重新打开 Claude Desktop。
+
+### Codex CLI / Codex IDE / ChatGPT Desktop
+
+Codex CLI、IDE 扩展和 ChatGPT Desktop 共用 Codex MCP 配置。添加到 `~/.codex/config.toml`；也可在受信任项目中使用 `.codex/config.toml`。
+
+```toml
+[mcp_servers.ai-social-data]
+url = "https://www.aisocialdata.xyz/mcp"
+```
+
+重新启动客户端后运行 `/mcp` 检查工具。
+
+### Gemini CLI
+
+命令行安装：
+
+```bash
+gemini mcp add --transport http ai-social-data https://www.aisocialdata.xyz/mcp
+```
+
+或者添加到 `~/.gemini/settings.json`：
+
+```json
+{
+  "mcpServers": {
+    "ai-social-data": {
+      "url": "https://www.aisocialdata.xyz/mcp",
+      "type": "http"
+    }
+  }
+}
+```
+
+### VS Code / GitHub Copilot Agent
+
+保存为工作区的 `.vscode/mcp.json`：
+
+```json
+{
+  "servers": {
+    "ai-social-data": {
+      "type": "http",
+      "url": "https://www.aisocialdata.xyz/mcp"
+    }
+  }
+}
+```
+
+打开 Copilot Chat 的 Agent 模式；也可以从命令面板运行 **MCP: Add Server**。
+
+### Windsurf
+
+在 **Settings → Tools → Add Server** 中选择远程 HTTP，填入：
+
+```text
+https://www.aisocialdata.xyz/mcp
+```
+
+使用 Raw Config 时：
+
+```json
+{
+  "mcpServers": {
+    "ai-social-data": {
+      "serverUrl": "https://www.aisocialdata.xyz/mcp"
+    }
+  }
+}
+```
+
+保存后在 Cascade MCP 面板点击 Refresh。
+
+### Cline
+
+在 Cline 的 **MCP Servers → Remote Servers** 中选择 **Streamable HTTP**，或使用：
+
+```json
+{
+  "mcpServers": {
+    "ai-social-data": {
+      "type": "streamableHttp",
+      "url": "https://www.aisocialdata.xyz/mcp",
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+### Roo Code / Cherry Studio / 其他 stdio 客户端
+
+只要客户端支持标准 `command + args` MCP 配置，就可以使用：
+
+```json
+{
+  "mcpServers": {
+    "ai-social-data": {
+      "command": "npx",
+      "args": ["-y", "ai-social-data-mcp"]
+    }
+  }
+}
+```
+
+## 安装后如何验证？
+
+检查 npm 桥接器：
 
 ```bash
 npx -y ai-social-data-mcp --version
 ```
 
-### Codex
+然后向 Agent 提问：
 
-```toml
-[mcp_servers.ai-social-data]
-url = "https://www.aisocialdata.xyz/mcp"
+> 使用 `get_hot_list` 获取抖音前 3 个热点，并告诉我每个热点的热度。
+
+安装成功时，客户端应显示以下 6 个工具：
+
+```text
+get_hot_list · social_search · get_content_detail
+get_user_profile · get_user_posts · get_comments
 ```
 
 ## 适合哪些真实场景？
