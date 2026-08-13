@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "description": "One-command MCP bridge for detailed public social-platform data",
   "homepage": "https://www.aisocialdata.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yy-MAX-HUB/ai-social-data-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yy-MAX-HUB/ai-social-data-mcp/issues"
+  },
   "type": "module",
   "bin": {
     "ai-social-data-mcp": "dist/index.js"

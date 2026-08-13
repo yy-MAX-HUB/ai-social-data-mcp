@@ -4,6 +4,9 @@
 
 本仓库是完全开源的 MCP stdio 桥接器。它连接免费的托管 MCP 服务；数据采集后端运行在项目方服务器，不包含在本仓库中。
 
+- 托管服务：<https://www.aisocialdata.xyz>
+- 源码：<https://github.com/yy-MAX-HUB/ai-social-data-mcp>
+
 ## 一键使用
 
 无需 API Key。Cursor 用户可直接点击：
