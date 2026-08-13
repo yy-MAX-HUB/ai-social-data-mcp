@@ -9,28 +9,32 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-const packageVersion = "0.1.1";
+const packageVersion = "0.2.0";
 const defaultEndpoint = "https://www.aisocialdata.xyz/mcp";
 
 function printHelp(): void {
   process.stdout.write(
     [
-      "AI Social Data MCP",
+      "FeedSonar MCP",
       "",
       "Starts a local stdio MCP bridge to the free hosted social-data service.",
       "",
       "Environment:",
-      `  AISOCIALDATA_MCP_URL  Hosted MCP endpoint (default: ${defaultEndpoint})`,
+      `  FEEDSONAR_MCP_URL  Hosted MCP endpoint (default: ${defaultEndpoint})`,
       "",
     ].join("\n")
   );
 }
 
 function endpointUrl(): URL {
-  const url = new URL(process.env.AISOCIALDATA_MCP_URL || defaultEndpoint);
+  const url = new URL(
+    process.env.FEEDSONAR_MCP_URL ||
+      process.env.AISOCIALDATA_MCP_URL ||
+      defaultEndpoint
+  );
   const local = url.hostname === "localhost" || url.hostname === "127.0.0.1";
   if (url.protocol !== "https:" && !(local && url.protocol === "http:")) {
-    throw new Error("AISOCIALDATA_MCP_URL 必须使用 HTTPS；仅 localhost 可使用 HTTP");
+    throw new Error("FEEDSONAR_MCP_URL 必须使用 HTTPS；仅 localhost 可使用 HTTP");
   }
   return url;
 }
@@ -66,14 +70,14 @@ async function main(): Promise<void> {
 
   const endpoint = endpointUrl();
   const upstream = new Client(
-    { name: "ai-social-data-stdio-bridge", version: packageVersion },
+    { name: "feedsonar-stdio-bridge", version: packageVersion },
     { capabilities: {} }
   );
   const upstreamTransport = new StreamableHTTPClientTransport(endpoint, {
     requestInit: {
       headers: {
-        "User-Agent": `ai-social-data-mcp/${packageVersion}`,
-        "X-AI-Social-Data-Client": `stdio-bridge/${packageVersion}`,
+        "User-Agent": `feedsonar-mcp/${packageVersion}`,
+        "X-FeedSonar-Client": `stdio-bridge/${packageVersion}`,
       },
     },
     reconnectionOptions: {
@@ -87,7 +91,7 @@ async function main(): Promise<void> {
   await upstream.connect(upstreamTransport);
 
   const server = new Server(
-    { name: "ai-social-data", version: packageVersion },
+    { name: "feedsonar", version: packageVersion },
     {
       capabilities: { tools: {} },
       instructions:
@@ -109,7 +113,7 @@ async function main(): Promise<void> {
 
   const stdio = new StdioServerTransport();
   await server.connect(stdio);
-  process.stderr.write(`[ai-social-data] connected to ${endpoint.origin}\n`);
+  process.stderr.write(`[feedsonar] connected to ${endpoint.origin}\n`);
 
   let closing = false;
   const close = async () => {
@@ -123,6 +127,6 @@ async function main(): Promise<void> {
 
 main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error);
-  process.stderr.write(`[ai-social-data] startup failed: ${message}\n`);
+  process.stderr.write(`[feedsonar] startup failed: ${message}\n`);
   process.exitCode = 1;
 });

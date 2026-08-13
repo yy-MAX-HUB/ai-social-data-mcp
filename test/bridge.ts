@@ -55,7 +55,7 @@ const transport = new StdioClientTransport({
   args: [resolve(here, "../dist/index.js")],
   env: {
     ...process.env,
-    AISOCIALDATA_MCP_URL: `http://127.0.0.1:${address.port}/mcp`,
+    FEEDSONAR_MCP_URL: `http://127.0.0.1:${address.port}/mcp`,
   } as Record<string, string>,
   stderr: "pipe",
 });

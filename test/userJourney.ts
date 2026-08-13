@@ -10,8 +10,8 @@ const transport = new StdioClientTransport({
   args: [resolve(here, "../dist/index.js")],
   env: {
     ...process.env,
-    AISOCIALDATA_MCP_URL:
-      process.env.AISOCIALDATA_TEST_URL || "https://www.aisocialdata.xyz/mcp",
+    FEEDSONAR_MCP_URL:
+      process.env.FEEDSONAR_TEST_URL || "https://www.aisocialdata.xyz/mcp",
   } as Record<string, string>,
   stderr: "pipe",
 });

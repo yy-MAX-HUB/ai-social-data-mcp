@@ -1,18 +1,18 @@
 {
-  "name": "ai-social-data-mcp",
-  "version": "0.1.1",
-  "description": "Give Cursor, Claude and Codex deep social data: search, paginate, inspect creators, posts and comments",
+  "name": "feedsonar-mcp",
+  "version": "0.2.0",
+  "description": "Deep public social data for AI agents — search, paginate, inspect creators, posts and comments",
   "homepage": "https://www.aisocialdata.xyz",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yy-MAX-HUB/ai-social-data-mcp.git"
+    "url": "git+https://github.com/yy-MAX-HUB/feedsonar-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/yy-MAX-HUB/ai-social-data-mcp/issues"
+    "url": "https://github.com/yy-MAX-HUB/feedsonar-mcp/issues"
   },
   "type": "module",
   "bin": {
-    "ai-social-data-mcp": "dist/index.js"
+    "feedsonar-mcp": "dist/index.js"
   },
   "files": [
     "dist",
@@ -42,7 +42,7 @@
     "claude",
     "codex"
   ],
-  "author": "AI Social Data",
+  "author": "FeedSonar",
   "license": "MIT",
   "engines": {
     "node": ">=18"

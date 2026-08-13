@@ -1,21 +1,21 @@
 <div align="center">
 
-# AI Social Data MCP
+# FeedSonar
 
 ### 让 Agent 不只“搜到网页”，而是真正进入社交平台的数据层
 
 Built for **Cursor · Claude · Codex**  
 搜索、自动翻页、读取详情、分析作者与评论区——全部通过 MCP 完成。
 
-[![npm](https://img.shields.io/npm/v/ai-social-data-mcp?style=flat-square&logo=npm)](https://www.npmjs.com/package/ai-social-data-mcp)
+[![npm](https://img.shields.io/npm/v/feedsonar-mcp?style=flat-square&logo=npm)](https://www.npmjs.com/package/feedsonar-mcp)
 [![MIT License](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](./LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-6f42c1?style=flat-square)](https://www.aisocialdata.xyz/mcp)
 [![Black-box](https://img.shields.io/badge/black--box-10%2F10_passed-1f883d?style=flat-square)](https://www.aisocialdata.xyz)
 
-[一键安装到 Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=ai-social-data&config=eyJ1cmwiOiJodHRwczovL3d3dy5haXNvY2lhbGRhdGEueHl6L21jcCJ9)
+[一键安装到 Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=feedsonar&config=eyJ1cmwiOiJodHRwczovL3d3dy5haXNvY2lhbGRhdGEueHl6L21jcCJ9)
  · [在线服务](https://www.aisocialdata.xyz)
- · [npm](https://www.npmjs.com/package/ai-social-data-mcp)
- · [Release](https://github.com/yy-MAX-HUB/ai-social-data-mcp/releases/latest)
+ · [npm](https://www.npmjs.com/package/feedsonar-mcp)
+ · [Release](https://github.com/yy-MAX-HUB/feedsonar-mcp/releases/latest)
 
 </div>
 
@@ -31,7 +31,7 @@ Built for **Cursor · Claude · Codex**
 - 评论区里的价格、预约、体验和真实需求
 - 不同平台对同一话题的反馈差异
 
-AI Social Data MCP 把这些能力包装成 Agent 能理解、能组合、能自动翻页的结构化工具。
+FeedSonar 把这些能力包装成 Agent 能理解、能组合、能自动翻页的结构化工具。
 
 > **示例任务：**  
 > “搜索 12 个北京旅游视频，不够就继续翻页；筛选互动高的内容，再读取评论区，总结游客最关心的问题。”
@@ -45,7 +45,7 @@ Agent 会自动完成：
 
 ## 与普通网页搜索的区别
 
-| 能力 | 普通网页搜索 | AI Social Data MCP |
+| 能力 | 普通网页搜索 | FeedSonar |
 |---|---:|---:|
 | 返回网页链接与摘要 | ✓ | ✓ |
 | 返回结构化互动指标 | — | ✓ |
@@ -72,14 +72,14 @@ Agent 会自动完成：
 
 ### Cursor
 
-最快方式：[一键安装到 Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=ai-social-data&config=eyJ1cmwiOiJodHRwczovL3d3dy5haXNvY2lhbGRhdGEueHl6L21jcCJ9)
+最快方式：[一键安装到 Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=feedsonar&config=eyJ1cmwiOiJodHRwczovL3d3dy5haXNvY2lhbGRhdGEueHl6L21jcCJ9)
 
 手动安装：保存到项目的 `.cursor/mcp.json`，然后重新加载 Cursor。
 
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "url": "https://www.aisocialdata.xyz/mcp"
     }
   }
@@ -89,7 +89,7 @@ Agent 会自动完成：
 ### Claude Code
 
 ```bash
-claude mcp add --transport http --scope user ai-social-data https://www.aisocialdata.xyz/mcp
+claude mcp add --transport http --scope user feedsonar https://www.aisocialdata.xyz/mcp
 ```
 
 检查连接：
@@ -110,9 +110,9 @@ Claude Desktop 使用 stdio 桥接器。要求 Node.js 18 或更高版本。
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "command": "npx",
-      "args": ["-y", "ai-social-data-mcp"]
+      "args": ["-y", "feedsonar-mcp"]
     }
   }
 }
@@ -125,7 +125,7 @@ Claude Desktop 使用 stdio 桥接器。要求 Node.js 18 或更高版本。
 Codex CLI、IDE 扩展和 ChatGPT Desktop 共用 Codex MCP 配置。添加到 `~/.codex/config.toml`；也可在受信任项目中使用 `.codex/config.toml`。
 
 ```toml
-[mcp_servers.ai-social-data]
+[mcp_servers.feedsonar]
 url = "https://www.aisocialdata.xyz/mcp"
 ```
 
@@ -136,7 +136,7 @@ url = "https://www.aisocialdata.xyz/mcp"
 命令行安装：
 
 ```bash
-gemini mcp add --transport http ai-social-data https://www.aisocialdata.xyz/mcp
+gemini mcp add --transport http feedsonar https://www.aisocialdata.xyz/mcp
 ```
 
 或者添加到 `~/.gemini/settings.json`：
@@ -144,7 +144,7 @@ gemini mcp add --transport http ai-social-data https://www.aisocialdata.xyz/mcp
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "url": "https://www.aisocialdata.xyz/mcp",
       "type": "http"
     }
@@ -159,7 +159,7 @@ gemini mcp add --transport http ai-social-data https://www.aisocialdata.xyz/mcp
 ```json
 {
   "servers": {
-    "ai-social-data": {
+    "feedsonar": {
       "type": "http",
       "url": "https://www.aisocialdata.xyz/mcp"
     }
@@ -182,7 +182,7 @@ https://www.aisocialdata.xyz/mcp
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "serverUrl": "https://www.aisocialdata.xyz/mcp"
     }
   }
@@ -198,7 +198,7 @@ https://www.aisocialdata.xyz/mcp
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "type": "streamableHttp",
       "url": "https://www.aisocialdata.xyz/mcp",
       "disabled": false,
@@ -215,9 +215,9 @@ https://www.aisocialdata.xyz/mcp
 ```json
 {
   "mcpServers": {
-    "ai-social-data": {
+    "feedsonar": {
       "command": "npx",
-      "args": ["-y", "ai-social-data-mcp"]
+      "args": ["-y", "feedsonar-mcp"]
     }
   }
 }
@@ -228,7 +228,7 @@ https://www.aisocialdata.xyz/mcp
 检查 npm 桥接器：
 
 ```bash
-npx -y ai-social-data-mcp --version
+npx -y feedsonar-mcp --version
 ```
 
 然后向 Agent 提问：
@@ -342,7 +342,7 @@ npm run test:journey
 自定义兼容端点：
 
 ```bash
-AISOCIALDATA_MCP_URL=http://127.0.0.1:9100/mcp npx ai-social-data-mcp
+FEEDSONAR_MCP_URL=http://127.0.0.1:9100/mcp npx feedsonar-mcp
 ```
 
 非本机地址必须使用 HTTPS。
