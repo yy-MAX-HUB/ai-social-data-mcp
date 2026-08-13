@@ -6,6 +6,7 @@
 
 - 托管服务：<https://www.aisocialdata.xyz>
 - 源码：<https://github.com/yy-MAX-HUB/ai-social-data-mcp>
+- npm：<https://www.npmjs.com/package/ai-social-data-mcp>
 
 ## 一键使用
 
